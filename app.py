@@ -42,7 +42,7 @@ def predict(filename , model):
     return class_result , prob_result
 @app.route('/')
 def home():
-        return render_template("index.html")
+        return render_template("Templates/index.html")
 @app.route('/success' , methods = ['GET' , 'POST'])
 def success():
     error = ''
@@ -72,9 +72,9 @@ def success():
                 print(str(e))
                 error = 'This image from this site is not accesible or inappropriate input'
             if(len(error) == 0):
-                return  render_template('success.html' , img  = img , predictions = predictions)
+                return  render_template('Templates/success.html' , img  = img , predictions = predictions)
             else:
-                return render_template('index.html' , error = error) 
+                return render_template('Templates/index.html' , error = error) 
             
         elif (request.files):
             file = request.files['file']
@@ -90,14 +90,14 @@ def success():
                         "prob1": prob_result[0],
                         "prob2": prob_result[1],
                         "prob3": prob_result[2],
-                }
+                }       
             else:
                 error = "Please upload images of jpg , jpeg and png extension only"
             if(len(error) == 0):
-                return  render_template('success.html' , img  = img , predictions = predictions)
+                return  render_template('Templates/success.html' , img  = img , predictions = predictions)
             else:
-                return render_template('index.html' , error = error)
+                return render_template('Templates/index.html' , error = error)
     else:
-        return render_template('index.html')
+        return render_template('Templates/index.html')
 if __name__ == "__main__":
     app.run(port=1504,debug = True, use_reloader=False)
