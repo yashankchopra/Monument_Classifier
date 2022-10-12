@@ -100,4 +100,4 @@ def success():
     else:
         return render_template('index.html')
 if __name__ == "__main__":
-    app.run(port=1504,debug = True, use_reloader=False)
+    app.run()
